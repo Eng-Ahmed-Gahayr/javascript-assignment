@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To Do List</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#ffffff;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:0;
+}
+
+.container{
+  width:400px;
+  background:#fff;
+  border-radius:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1);
+  overflow:hidden;
+}
+
+.header{
+  background:linear-gradient(135deg,#0d6efd,#20c997);
+  color:#fff;
+  text-align:center;
+  padding:20px;
+}
+
+.input-box{
+  display:flex;
+  gap:10px;
+  padding:15px;
+}
+
+input{
+  flex:1;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  outline:none;
+}
+
+.add-btn{
+  background:#10b981;
+  border:none;
+  color:white;
+  padding:10px 15px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.tasks{
+  padding:0 15px 15px;
+}
+
+.task{
+  background:#f9f9f9;
+  padding:10px;
+  border-radius:8px;
+  margin-top:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.task.completed span{
+  text-decoration:line-through;
+  color:gray;
+}
+
+.task button{
+  border:none;
+  padding:6px 8px;
+  border-radius:5px;
+  cursor:pointer;
+  color:white;
+}
+
+.done{ background:#065f46; }
+.delete{ background:#ef4444; }
+
+.footer{
+  background:#f3f4f6;
+  padding:10px;
+  text-align:center;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="header">
+    <h2>To Do List</h2>
+    <p>Axmed mohamed </p>
+  </div>
+
+  <div class="input-box">
+    <input type="text" id="taskInput" placeholder="Gali hawlaha cusub">
+    <button class="add-btn" onclick="addTask()">Ku dar</button>
+  </div>
+
+  <div class="tasks" id="taskList"></div>
+
+  <div class="footer">
+    <span id="summary">Wadarta: 0 | La dhamaystiray: 0</span>
+  </div>
+</div>
+
+<script>
+let total = 0;
+let completed = 0;
+
+function addTask(){
+  const input = document.getElementById("taskInput");
+  const text = input.value.trim();
+
+  if(text === "") return;
+
+  total++;
+
+  const task = document.createElement("div");
+  task.className = "task";
+
+  const span = document.createElement("span");
+  span.textContent = text;
+
+  const btnBox = document.createElement("div");
+
+  const doneBtn = document.createElement("button");
+  doneBtn.textContent = "Dhammayso";
+  doneBtn.className = "done";
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Tirtir";
+  deleteBtn.className = "delete";
+
+  doneBtn.onclick = function(){
+    if(task.classList.contains("completed")){
+      task.classList.remove("completed");
+      completed--;
+    }else{
+      task.classList.add("completed");
+      completed++;
+    }
+    updateSummary();
+  }
+
+  deleteBtn.onclick = function(){
+    if(task.classList.contains("completed")){
+      completed--;
+    }
+    total--;
+    task.remove();
+    updateSummary();
+  }
+
+  btnBox.appendChild(doneBtn);
+  btnBox.appendChild(deleteBtn);
+
+  task.appendChild(span);
+  task.appendChild(btnBox);
+
+  document.getElementById("taskList").appendChild(task);
+  input.value = "";
+
+  updateSummary();
+}
+
+
+function updateSummary(){
+  const summary = document.getElementById("summary");
+  summary.textContent =
+    "Wadarta: " + total + " | La dhamaystiray: " + completed;
+}
+</script>
+
+</body>
+</html>

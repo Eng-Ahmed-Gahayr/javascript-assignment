@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pyramid</title>
+<style>
+  body {
+    font-family: monospace;
+    background: linear-gradient(to bottom, #1e3c72, #2a5298);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .pyramid {
+    white-space: pre;
+    font-size: 28px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  }
+  .star {
+    color: #ffd700;
+    animation: blink 1s infinite alternate;
+  }
+  @keyframes blink {
+    from {opacity: 1;}
+    to {opacity: 0.3;}
+  }
+</style>
+</head>
+<body>
+
+<div class="pyramid" id="pyramid"></div>
+
+<script>
+let rows = 7; 
+let output = "";
+
+for (let i = 1; i <= rows; i++) {
+    let line = "";
+    for (let j = 1; j <= rows * 2 - 1; j++) {
+        if (j >= rows - i + 1 && j <= rows + i - 1) {
+            line += "★"; 
+        } else {
+            line += " ";
+        }
+    }
+    output += line + "\n";
+}
+
+document.getElementById("pyramid").textContent = output;
+</script>
+
+</body>
+</html>

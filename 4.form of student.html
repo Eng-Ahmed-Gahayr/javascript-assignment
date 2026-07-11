@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Marks Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #2a9d8f;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: #21867a;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f7f7f7;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Student Marks Form</h2>
+
+    <label>Student Name:</label>
+    <input type="text" id="studentName" placeholder="Enter name">
+
+    <label>1.Database: </label>
+    <input type="number" id="sub1" placeholder="Marks out of 100">
+
+    <label>2.web design:</label>
+    <input type="number" id="sub2" placeholder="Marks out of 100">
+
+    <label> 3.web development:</label>
+    <input type="number" id="sub3" placeholder="Marks out of 100">
+
+    <label>4.programing:</label>
+    <input type="number" id="sub4" placeholder="Marks out of 100">
+
+    <label>5.multimedia:</label>
+    <input type="number" id="sub5" placeholder="Marks out of 100">
+
+    <button onclick="calculateResult()">Calculate</button>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculateResult() {
+        let name = document.getElementById("studentName").value;
+        let s1 = parseFloat(document.getElementById("sub1").value);
+        let s2 = parseFloat(document.getElementById("sub2").value);
+        let s3 = parseFloat(document.getElementById("sub3").value);
+        let s4 = parseFloat(document.getElementById("sub4").value);
+        let s5 = parseFloat(document.getElementById("sub5").value);
+
+        if(!name || isNaN(s1) || isNaN(s2) || isNaN(s3) || isNaN(s4) || isNaN(s5)){
+            alert("Fadlan geli dhammaan xogta");
+            return;
+        }
+
+        let total = s1 + s2 + s3 + s4 + s5;
+        let average = total / 5;
+
+        let grade = '';
+        if(average >= 90) grade = 'A';
+        else if(average >= 80) grade = 'B';
+        else if(average >= 70) grade = 'C';
+        else if(average >= 60) grade = 'D';
+        else grade = 'F';
+
+        document.getElementById("result").innerHTML = `
+            <strong>Student Name:</strong> ${name} <br>
+            <strong>Total Marks:</strong> ${total} <br>
+            <strong>Average Marks:</strong> ${average.toFixed(2)} <br>
+            <strong>Grade:</strong> ${grade}
+        `;
+    }
+</script>
+
+</body>
+</html>

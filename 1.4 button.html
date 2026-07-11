@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<title>4 Button Xisaab</title>
+<style>
+    body {
+        font-family: Arial;
+        text-align: center;
+        margin-top: 40px;
+    }
+    button {
+        padding: 15px 25px;
+        margin: 10px;
+        font-size: 18px;
+        background: #059669;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #047857;
+    }
+    #result {
+        margin-top: 25px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #0ea5e9;
+    }
+</style>
+</head>
+<body>
+
+<h2>4 Button — Xisaab Soo Saara</h2>
+
+<button onclick="calc(5 + 5)">Addition</button>
+<button onclick="calc(10 - 3)">Subtracion</button>
+<button onclick="calc(4 * 6)">multiplication</button>
+<button onclick="calc(20 / 2)">division</button>
+
+<div id="result"></div>
+
+<script>
+function calc(answer) {
+    document.getElementById('result').innerHTML = "Answer: " + answer;
+}
+</script>
+
+</body>
+</html>

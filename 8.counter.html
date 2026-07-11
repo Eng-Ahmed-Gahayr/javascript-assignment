@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tasbiix Fudud</title>
+<style>
+body{
+  margin:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family:Arial,sans-serif;
+  background:#f0f0f0;
+}
+
+.container{
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+h2{ margin:0 0 10px; color:#0d6efd; }
+.zikr{ font-size:18px; margin-bottom:20px; }
+.counter{ font-size:50px; margin-bottom:20px; }
+
+.button{
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  background:#10b981;
+  color:white;
+  font-size:22px;
+  border:none;
+  cursor:pointer;
+}
+
+.button:active{ transform:scale(0.95); }
+
+.controls{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+.controls button{
+  padding:10px 20px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  color:white;
+}
+
+.reset{ background:#ef4444; }
+.zikrBtn{ background:#0d6efd; }
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h2>Tasbiix</h2>
+  <div class="zikr" id="zikrText">Subxaanallaah</div>
+  <div class="counter" id="count">0</div>
+
+  <button class="button" onclick="countUp()">Tasbiix</button>
+
+  <div class="controls">
+    <button class="reset" onclick="resetCount()">Reset</button>
+    <button class="zikrBtn" onclick="changeZikr()">Zikr</button>
+  </div>
+</div>
+
+<script>
+let count = 0;
+let zikrIndex = 0;
+const DiList = ["Subxaanallaah","Alxamdulillaah","Allaahu Akbar"];
+
+function countUp(){
+  count++;
+  document.getElementById("count").textContent = count;
+}
+
+function resetCount(){
+  count = 0;
+  document.getElementById("count").textContent = count;
+}
+
+function changeZikr(){
+  DikrIndex = (DikIndex + 1) % zikrList.length;
+  count = 0;
+  document.getElementById("zikrText").textContent = zikrList[zikrIndex];
+  document.getElementById("count").textContent = count;
+}
+</script>
+</body>
+</html>
